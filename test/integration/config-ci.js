@@ -7,6 +7,7 @@ module.exports = {
         platform            : 'Windows 7',
     },
     quit        : 'always', // avoid wasting 90 seconds on SauceLabs
+    seleniumServerURL : 'http://localhost:4444/wd/hub',
     tags        : [ 'circle-ci', '#' + process.env.CIRCLE_BUILD_NUM ],
     timeout     : 10000,
     views       : [ 'Verbose' ],
