@@ -11,6 +11,7 @@ defaults: &defaults
     # mongo 2.4.9 is not available on Docker Hub
     # https://stackoverflow.com/questions/48233357/install-older-version-of-mongodb-with-docker
     - image: mongo:3.2.18
+    - image: elgalu/selenium:latest
   environment:
     SAUCE_USERNAME: mes-aides-bot
     OPENFISCA_BIND_HOST: 127.0.0.1:2000
