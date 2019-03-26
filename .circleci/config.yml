@@ -262,10 +262,10 @@ jobs:
       # https://wiki.saucelabs.com/display/DOCS/Supported+Android+Emulators
       - run:
           name: Watai base suite
-          command: node_modules/.bin/watai test/integration/base-suite --config '{"driverCapabilities":{"appiumVersion":"1.5.1","platformName":"iOS","platformVersion":"12.1","deviceName":"iPhone X","browserName":"Safari","version":"latest"}}'
+          command: node_modules/.bin/watai test/integration/base-suite --config '{"driverCapabilities":{"appiumVersion":"1.9.1","platformName":"iOS","platformVersion":"12.1","deviceName":"iPhone X Simulator","browserName":"Safari","version":"latest"}}'
       - run:
           name: Watai family suite
-          command: node_modules/.bin/watai test/integration/family-suite  --config '{"driverCapabilities":{"appiumVersion":"1.5.1","platformName":"iOS","platformVersion":"12.1","deviceName":"iPhone X","browserName":"Safari","version":"latest"}}'
+          command: node_modules/.bin/watai test/integration/family-suite  --config '{"driverCapabilities":{"appiumVersion":"1.9.1","platformName":"iOS","platformVersion":"12.1","deviceName":"iPhone X Simulator","browserName":"Safari","version":"latest"}}'
   test_selenium_android_8_0:
     <<: *defaults
     steps:
