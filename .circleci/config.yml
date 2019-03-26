@@ -144,7 +144,36 @@ jobs:
       - run:
           name: Karma
           command: npm run test:karma
-  test_selenium_chrome:
+  # test_selenium_chrome:
+  #   <<: *defaults
+  #   steps:
+  #     - checkout
+  #     - attach_workspace:
+  #         at: ~/mes-aides-ui
+  #     - *install_virtualenv
+  #     - run:
+  #         name: Start OpenFisca
+  #         command: |
+  #           source .venv/bin/activate
+  #           gunicorn api --chdir openfisca/ --config openfisca/config.py --preload --log-level debug --log-file=-
+  #           deactivate
+  #         background: true
+  #     - run:
+  #         name: Wait for OpenFisca
+  #         command: wget --retry-connrefused --waitretry=1 --output-document=/dev/null http://localhost:2000/variable/parisien
+  #     - *configure_watai
+  #     - *download_sauce_connect
+  #     - *start_sauce_connect
+  #     - *start_mes_aides
+  #     - *wait_for_sauce_connect
+  #     - *wait_for_mes_aides
+  #     - run:
+  #         name: Watai base suite
+  #         command: node_modules/.bin/watai test/integration/base-suite --config '{"driverCapabilities":{"browserName":"chrome","version":"latest","chromeOptions":{"args":["lang=fr-FR"]}}}'
+  #     - run:
+  #         name: Watai family suite
+  #         command: node_modules/.bin/watai test/integration/family-suite  --config '{"driverCapabilities":{"browserName":"chrome","version":"latest","chromeOptions":{"args":["lang=fr-FR"]}}}'
+  test_selenium_android:
     <<: *defaults
     steps:
       - checkout
@@ -169,10 +198,10 @@ jobs:
       - *wait_for_mes_aides
       - run:
           name: Watai base suite
-          command: node_modules/.bin/watai test/integration/base-suite --config '{"driverCapabilities":{"browserName":"chrome","version":"latest","chromeOptions":{"args":["lang=fr-FR"]}}}'
+          command: node_modules/.bin/watai test/integration/base-suite --config '{"driverCapabilities":{"platformName":"Android","platformVersion":"7.0","deviceName":"Android GoogleAPI Emulator","browserName":"","version":"latest","chromeOptions":{"args":["lang=fr-FR"]}}}'
       - run:
           name: Watai family suite
-          command: node_modules/.bin/watai test/integration/family-suite  --config '{"driverCapabilities":{"browserName":"chrome","version":"latest","chromeOptions":{"args":["lang=fr-FR"]}}}'
+          command: node_modules/.bin/watai test/integration/family-suite  --config '{"driverCapabilities":{"platformName":"Android","platformVersion":"7.0","deviceName":"Android GoogleAPI Emulator","browserName":"","version":"latest","chromeOptions":{"args":["lang=fr-FR"]}}}'
   test_openfisca_test_generation:
     <<: *defaults
     steps:
@@ -212,7 +241,12 @@ workflows:
       - test_karma:
           requires:
             - build
-      - test_selenium_chrome:
+      # - test_selenium_chrome:
+      #     requires:
+      #       - install_openfisca
+      #       - test_mocha
+      #       - test_karma
+      - test_selenium_android:
           requires:
             - install_openfisca
             - test_mocha
@@ -223,7 +257,8 @@ workflows:
             - install_openfisca
       - deploy:
           requires:
-            - test_selenium_chrome
+            # - test_selenium_chrome
+            - test_selenium_android
             - test_openfisca_test_generation
           filters:
             branches:
