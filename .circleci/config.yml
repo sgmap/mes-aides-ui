@@ -235,6 +235,37 @@ jobs:
       - run:
           name: Watai family suite
           command: node_modules/.bin/watai test/integration/family-suite  --config '{"driverCapabilities":{"platform":"Linux","version":"7.0","deviceName":"Android GoogleAPI Emulator","browserName":"chrome","version":"latest","chromeOptions":{"args":["lang=fr-FR"]}}}'
+  test_selenium_ios_12_1_safari:
+    <<: *defaults
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ~/mes-aides-ui
+      - *install_virtualenv
+      - run:
+          name: Start OpenFisca
+          command: |
+            source .venv/bin/activate
+            gunicorn api --chdir openfisca/ --config openfisca/config.py --preload --log-level debug --log-file=-
+            deactivate
+          background: true
+      - run:
+          name: Wait for OpenFisca
+          command: wget --retry-connrefused --waitretry=1 --output-document=/dev/null http://localhost:2000/variable/parisien
+      - *configure_watai
+      - *download_sauce_connect
+      - *start_sauce_connect
+      - *start_mes_aides
+      - *wait_for_sauce_connect
+      - *wait_for_mes_aides
+      # https://wiki.saucelabs.com/display/DOCS/Examples+of+Test+Configuration+Options+for+Website+Tests
+      # https://wiki.saucelabs.com/display/DOCS/Supported+Android+Emulators
+      - run:
+          name: Watai base suite
+          command: node_modules/.bin/watai test/integration/base-suite --config '{"driverCapabilities":{"appiumVersion", "1.5.1","platformName":"iOS","platformVersion":"12.1","deviceName":"iPhone X","browserName":"Safari","version":"latest"}}'
+      - run:
+          name: Watai family suite
+          command: node_modules/.bin/watai test/integration/family-suite  --config '{"driverCapabilities":{"appiumVersion", "1.5.1","platformName":"iOS","platformVersion":"12.1","deviceName":"iPhone X","browserName":"Safari","version":"latest"}}'
   test_selenium_android_8_0:
     <<: *defaults
     steps:
@@ -321,6 +352,11 @@ workflows:
             - test_mocha
             - test_karma
       - test_selenium_android_8_0:
+          requires:
+            - install_openfisca
+            - test_mocha
+            - test_karma
+      - test_selenium_ios_12_1_safari:
           requires:
             - install_openfisca
             - test_mocha
