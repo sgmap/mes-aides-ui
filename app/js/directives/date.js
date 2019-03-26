@@ -100,8 +100,8 @@ angular.module('ddsApp').directive('ddsDate', function($window, ABTestingService
             var maskedInputController = textMask.maskInput({
                 inputElement: element[0],
                 mask: FORMATS[format].mask,
-                pipe: FORMATS[format].autoCorrectedDatePipe,
-                guide: true,
+                // pipe: FORMATS[format].autoCorrectedDatePipe,
+                guide: false,
                 keepCharPositions: true,
                 placeholderChar: '\u2000',
             });
