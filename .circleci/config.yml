@@ -196,12 +196,14 @@ jobs:
       - *start_mes_aides
       - *wait_for_sauce_connect
       - *wait_for_mes_aides
+      # https://wiki.saucelabs.com/display/DOCS/Examples+of+Test+Configuration+Options+for+Website+Tests
+      # https://wiki.saucelabs.com/display/DOCS/Supported+Android+Emulators
       - run:
           name: Watai base suite
-          command: node_modules/.bin/watai test/integration/base-suite --config '{"driverCapabilities":{"platformName":"Android","platformVersion":"7.0","deviceName":"Android GoogleAPI Emulator","browserName":"","version":"latest","chromeOptions":{"args":["lang=fr-FR"]}}}'
+          command: node_modules/.bin/watai test/integration/base-suite --config '{"driverCapabilities":{"platform":"Linux","version":"7.0","deviceName":"Android GoogleAPI Emulator"}}'
       - run:
           name: Watai family suite
-          command: node_modules/.bin/watai test/integration/family-suite  --config '{"driverCapabilities":{"platformName":"Android","platformVersion":"7.0","deviceName":"Android GoogleAPI Emulator","browserName":"","version":"latest","chromeOptions":{"args":["lang=fr-FR"]}}}'
+          command: node_modules/.bin/watai test/integration/family-suite  --config '{"driverCapabilities":{"platform":"Linux","version":"7.0","deviceName":"Android GoogleAPI Emulator"}}'
   test_openfisca_test_generation:
     <<: *defaults
     steps:
