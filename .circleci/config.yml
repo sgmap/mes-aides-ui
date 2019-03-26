@@ -200,10 +200,10 @@ jobs:
       # https://wiki.saucelabs.com/display/DOCS/Supported+Android+Emulators
       - run:
           name: Watai base suite
-          command: node_modules/.bin/watai test/integration/base-suite --config '{"driverCapabilities":{"platform":"Linux","version":"7.0","deviceName":"Android GoogleAPI Emulator"}}'
+          command: node_modules/.bin/watai test/integration/base-suite --config '{"driverCapabilities":{"platform":"Linux","version":"7.0","deviceName":"Android GoogleAPI Emulator","browserName":"Browser"}}'
       - run:
           name: Watai family suite
-          command: node_modules/.bin/watai test/integration/family-suite  --config '{"driverCapabilities":{"platform":"Linux","version":"7.0","deviceName":"Android GoogleAPI Emulator"}}'
+          command: node_modules/.bin/watai test/integration/family-suite  --config '{"driverCapabilities":{"platform":"Linux","version":"7.0","deviceName":"Android GoogleAPI Emulator","browserName":"Browser"}}'
   test_openfisca_test_generation:
     <<: *defaults
     steps:
