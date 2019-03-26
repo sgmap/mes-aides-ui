@@ -231,10 +231,10 @@ jobs:
       # https://wiki.saucelabs.com/display/DOCS/Supported+Android+Emulators
       - run:
           name: Watai base suite
-          command: node_modules/.bin/watai test/integration/base-suite --config '{"driverCapabilities":{"platform":"Linux","version":"7.0","deviceName":"Android GoogleAPI Emulator","browserName":"chrome","version":"latest","chromeOptions":{"args":["lang=fr-FR"]}}}'
+          command: node_modules/.bin/watai test/integration/base-suite --config '{"driverCapabilities":{"platform":"Linux","version":"7.0","deviceName":"Android GoogleAPI Emulator","browserName":"Chrome","version":"latest","chromeOptions":{"args":["lang=fr-FR"]}}}'
       - run:
           name: Watai family suite
-          command: node_modules/.bin/watai test/integration/family-suite  --config '{"driverCapabilities":{"platform":"Linux","version":"7.0","deviceName":"Android GoogleAPI Emulator","browserName":"chrome","version":"latest","chromeOptions":{"args":["lang=fr-FR"]}}}'
+          command: node_modules/.bin/watai test/integration/family-suite  --config '{"driverCapabilities":{"platform":"Linux","version":"7.0","deviceName":"Android GoogleAPI Emulator","browserName":"Chrome","version":"latest","chromeOptions":{"args":["lang=fr-FR"]}}}'
   test_selenium_ios_12_1_safari:
     <<: *defaults
     steps:
