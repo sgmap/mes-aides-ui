@@ -101,7 +101,7 @@ angular.module('ddsApp').directive('ddsDate', function($window, ABTestingService
                 inputElement: element[0],
                 mask: FORMATS[format].mask,
                 // pipe: FORMATS[format].autoCorrectedDatePipe,
-                guide: false,
+                guide: true,
                 keepCharPositions: true,
                 placeholderChar: '\u2000',
             });
