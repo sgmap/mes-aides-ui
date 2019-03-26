@@ -112,6 +112,7 @@ require('./js/directives/selectOnFocus.js');
 require('./js/directives/yesNoQuestion.js');
 require('./js/directives/ym2RessourcesCallToAction.js');
 require('./js/directives/zeroToEmpty.js');
+require('./js/directives/resourceCategoryHelp.js');
 
 require('./js/filters/strings.js');
 require('./js/filters/isEmpty.js');
