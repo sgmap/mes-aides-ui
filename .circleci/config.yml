@@ -356,11 +356,11 @@ workflows:
             - install_openfisca
             - test_mocha
             - test_karma
-      - test_selenium_ios_12_1_safari:
-          requires:
-            - install_openfisca
-            - test_mocha
-            - test_karma
+      # - test_selenium_ios_12_1_safari:
+      #     requires:
+      #       - install_openfisca
+      #       - test_mocha
+      #       - test_karma
       - test_openfisca_test_generation:
           requires:
             - install
