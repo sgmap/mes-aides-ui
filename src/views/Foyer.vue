@@ -1,6 +1,8 @@
 <template>
   <div class="foyer">
-    <router-view/>
+    <transition name="slide">
+      <router-view/>
+    </transition>
     <FoyerRecap></FoyerRecap>
   </div>
 </template>
@@ -22,6 +24,25 @@ export default {
 .foyer {
   background-color: whitesmoke;
   padding: 1em 0em;
+}
+
+.slide-enter-active, .slide-leave-active {
+  transition-property: all;
+  transition-duration: .25s;
+}
+
+.slide-enter-active {
+  transition-delay: .25s;
+}
+
+.slide-leave-active {
+  opacity: 0;
+  transform: translateX(-4em);
+}
+
+.slide-enter {
+  opacity: 0;
+  transform: translateX(4em);  
 }
 
 pre {
