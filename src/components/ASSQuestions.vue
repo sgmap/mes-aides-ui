@@ -2,7 +2,7 @@
   <div>
     <div class="form__group">
       <label>
-        Quand s’est terminé {{ individu.role == 'demandeur' ? 'votre' : 'son' }} dernier contrat de travail ? (MM/AAAA)
+        <span class="group-title">Quand s’est terminé {{ individu.role == 'demandeur' ? 'votre' : 'son' }} dernier contrat de travail ?</span><em>(MM/AAAA)</em>
         <MonthInput v-model="individu.date_debut_chomage" />
       </label>
       

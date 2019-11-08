@@ -2,7 +2,7 @@
   <form @submit.prevent="submit">
     <h1>{{title | capitalize}}</h1>
     <div class="form__group">
-      <label>Date de naissance
+      <label><span class="group-title">Date de naissance</span>
         <InputDate v-model="individu.date_naissance" />
         <p class="notification warning" v-if="$v.individu.date_naissance.$dirty && $v.individu.date_naissance.$error">
           Ce champ est obligatoire.
@@ -28,7 +28,7 @@
     </div>
 
     <div class="form__group">
-      <label>Nationalité</label>
+      <label><span class="group-title">Nationalité</span></label>
       <NationalityChoice v-model="individu.nationalite" />
     </div>
     
@@ -67,12 +67,12 @@
 
     <div class="form__group">
       <label>
-        <span v-if="individu.role == 'demandeur'">Vous êtes</span>
-        <span v-if="individu.role == 'conjoint'">Votre conjoint·e est</span>
-        <span v-if="individu.role == 'enfant'">Il ou elle est</span>
-        <span>(plusieurs choix possibles)</span>
+        <span class="group-title" v-if="individu.role == 'demandeur'">Vous êtes</span>
+        <span class="group-title" v-if="individu.role == 'conjoint'">Votre conjoint·e est</span>
+        <span class="group-title" v-if="individu.role == 'enfant'">Il ou elle est</span>
+        <span><em>(plusieurs choix possibles)</em></span>
       </label>
-      <div>
+      <div class="choice-list">
         <label v-if="captureGardeAlternee">
           <input type="checkbox" v-model="individu.garde_alternee">
           En garde alternée
@@ -95,12 +95,13 @@
     <ASSQuestions class="form__group" v-bind:individu="individu" v-if="captureEligibiliteAss" />
 
     <div class="form__group" v-if="captureTauxIncapacite">
-      <label for="tauxIncapacite">
+      <label for="tauxIncapacite"><span class="group-title">
         {{ individu.role == 'demandeur' ? 'Votre' : 'Son' }} taux d'incapacité
         <span>
         évalué par <a target="_blank" rel="noopener" href="http://informations.handicap.fr/carte-france-mdph.php">votre <abbr title="Maison départementale des personnes handicapées">MDPH</abbr></a>.
-        </span>
+        </span></span>
       </label>
+      <div class="choice-list">
       <label v-for="tauxIncapacite in tauxIncapaciteOptions" v-bind:key="tauxIncapacite.value">
         <input type="radio"
             name="tauxIncapacite"
@@ -109,6 +110,7 @@
             />
             {{ tauxIncapacite.label }}
       </label>
+      </div>
     </div>
 
     <YesNoQuestion class="form__group" v-model="individu.aah_restriction_substantielle_durable_acces_emploi"
@@ -124,7 +126,7 @@
     </YesNoQuestion>
 
     <label class="form__group" v-if="selectedStatuts.etudiant">
-      À quel échelon {{ individu.role == 'demandeur' ? 'êtes-vous' : 'est-il/elle' }} boursier ?
+      <span class="group-title">À quel échelon {{ individu.role == 'demandeur' ? 'êtes-vous' : 'est-il/elle' }} boursier ?</span>
       <input id="echelon-bourse" v-model="individu.echelon_bourse" type="range" min="-1" max="7">
       {{ individu.echelon_bourse == -1 ? 'Non boursier': 'Boursier échelon ' + individu.echelon_bourse }}
     </label>

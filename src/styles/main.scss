@@ -8,6 +8,22 @@ $screen-xs-max:     768px-1;
   color: #454545;
 }
 
+h1 {
+  font-weight: 600;
+  line-height: 1.8em;
+  margin-bottom: .2em;
+}
+
+.group-title {
+  display: inline-block;
+  font-weight: 600;
+  line-height: 2;
+  margin-bottom: .2em;
+}
+
+.choice-list {
+  line-height: 1.8em;
+}
 
 .dotted-line {
   border-top: 1px dotted lighten(#333, 20%);

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="choice-list">
     <label>
       <input type="radio" name="nationalite" v-model="zone" value="fr" />
       Française
