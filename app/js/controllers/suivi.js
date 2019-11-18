@@ -5,6 +5,10 @@ var forEachBenefit = require('../../../backend/lib/mes-aides').forEach;
 
 var scroll = new SmoothScroll();
 
+// Pour chaque prestation affichée sur la page de résultats,
+// les répondants choissisent parmi la liste de réponses ci-dessous.
+// En cas d'échec (demandé échouée ou aucune action),
+// les répondants ont la possibilité d'écrire un texte libre.
 var choices = [
     { value: 'already', label: "J'en bénéficiais déjà" },
     { value: 'asked',   label: "J'ai fait une demande" },
