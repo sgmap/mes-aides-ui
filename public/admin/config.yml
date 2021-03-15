@@ -15,7 +15,7 @@ public_folder: img
 # local_backend: true
 publish_mode: editorial_workflow
 
-root: ../../..
+root: ../..
 
 collections:
   - name: institutions
