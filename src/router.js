@@ -62,14 +62,28 @@ const router = new Router({
           component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Individu/Nationalite.vue'),
         },
         {
+          name: 'ressources/types',
+          path: 'ressources/types',
+          component: () => import(/* webpackChunkName: "individu" */ './views/Foyer/Ressources/Types.vue'),
+        },
+        {
+          name: 'ressources/montants',
+          path: 'ressources/montants',
+          component: () => import(/* webpackChunkName: "individu" */ './views/Foyer/Ressources/Montants.vue'),
+        },
+        {
           name: 'property',
-          path: ':property',
+          path: ':property/:subproperty?',
           component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Property.vue'),
         }]
       },
       {
         path: 'enfants',
         component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Enfants.vue'),
+      },
+      {
+        path: 'enfants/ressources',
+        component: () => import(/* webpackChunkName: "individu" */ './views/Foyer/Ressources/Enfants.vue'),
       },
       {
         path: 'famille',
@@ -130,7 +144,7 @@ const router = new Router({
           title: 'Votre logement principal',
         }
       }, {
-        name: 'ressources/types',
+        name: 'ressources-types',
         path: ':role/:id?/ressources/types',
         component: () => import(/* webpackChunkName: "ressources-types" */ './views/Foyer/Ressources/Types.vue'),
         meta: {
@@ -140,7 +154,7 @@ const router = new Router({
           }
         }
       }, {
-        name: 'ressources/montants',
+        name: 'ressources-montants',
         path: ':role/:id?/ressources/montants',
         component: () => import(/* webpackChunkName: "ressources-montants" */ './views/Foyer/Ressources/Montants.vue'),
         meta: {
