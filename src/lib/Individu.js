@@ -20,9 +20,9 @@ function ressourceHeader(individu) {
 function find(situation, role, id) {
     if (role === 'enfant' && id) {
         return _.find(situation.enfants, { id: id })
+    } else {
+        return _.find(situation, {id: id}) || _.find(situation.enfants, {id: id}) || {}
     }
-
-    return situation[role] || _.find(situation, { id: id })
 }
 
 function getDemandeur() {

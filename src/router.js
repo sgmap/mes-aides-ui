@@ -3,7 +3,6 @@ import Router from 'vue-router'
 import Home from './views/Home.vue'
 
 import store from './store'
-import Individu from '@/lib/Individu'
 
 Vue.use(Router)
 
@@ -68,7 +67,7 @@ const router = new Router({
         },
         {
           name: 'ressources/montants',
-          path: 'ressources/montants',
+          path: 'ressources/montants/:category',
           component: () => import(/* webpackChunkName: "individu" */ './views/Foyer/Ressources/Montants.vue'),
         },
         {
@@ -142,26 +141,6 @@ const router = new Router({
         component: () => import(/* webpackChunkName: "logement" */ './views/Foyer/Logement.vue'),
         meta: {
           title: 'Votre logement principal',
-        }
-      }, {
-        name: 'ressources-types',
-        path: ':role/:id?/ressources/types',
-        component: () => import(/* webpackChunkName: "ressources-types" */ './views/Foyer/Ressources/Types.vue'),
-        meta: {
-          title: function(to, situation) {
-            const individu = Individu.find(situation, to.params.role, to.params.id)
-            return Individu.ressourceHeader(individu)
-          }
-        }
-      }, {
-        name: 'ressources-montants',
-        path: ':role/:id?/ressources/montants',
-        component: () => import(/* webpackChunkName: "ressources-montants" */ './views/Foyer/Ressources/Montants.vue'),
-        meta: {
-          title: function(to, situation) {
-            const individu = Individu.find(situation, to.params.role, to.params.id)
-            return Individu.ressourceHeader(individu)
-          }
         }
       }, {
         path: 'ressources/enfants',

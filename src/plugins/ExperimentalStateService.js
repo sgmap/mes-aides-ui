@@ -1,4 +1,3 @@
-
 function individuBlockFactory(id) {
   const r = name => `/simulation/individu/${id}/${name}`
   const conjoint = id == 'conjoint'
@@ -124,11 +123,13 @@ function housingBlock(/*situation, current*/) {
 
 function resourceBlocks(situation/*, current*/) {
   const individuResourceBlock = (individuId) => {
+    const individu = situation[individuId] || situation.enfants.find(enfant => enfant.id === individuId) || {}
     return {
       steps: [
-        `/simulation/individu/${individuId}/ressources/types`,
-        `/simulation/individu/${individuId}/ressources/montants`,
-      ]
+        `/simulation/individu/${individuId}/ressources/types`
+      ].concat(
+          individu._ressourcesCategories ? individu._ressourcesCategories.map(category => `/simulation/individu/${individuId}/ressources/montants/${category}`) : []
+      )
     }
   }
   return {
