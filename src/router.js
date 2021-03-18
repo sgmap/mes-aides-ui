@@ -63,12 +63,12 @@ const router = new Router({
         {
           name: 'ressources/types',
           path: 'ressources/types',
-          component: () => import(/* webpackChunkName: "individu" */ './views/Foyer/Ressources/Types.vue'),
+          component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Ressources/Types.vue'),
         },
         {
           name: 'ressources/montants',
           path: 'ressources/montants/:category',
-          component: () => import(/* webpackChunkName: "individu" */ './views/Foyer/Ressources/Montants.vue'),
+          component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Ressources/Montants.vue'),
         },
         {
           name: 'property',
@@ -82,7 +82,7 @@ const router = new Router({
       },
       {
         path: 'enfants/ressources',
-        component: () => import(/* webpackChunkName: "individu" */ './views/Foyer/Ressources/Enfants.vue'),
+        component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Ressources/Enfants.vue'),
       },
       {
         path: 'famille',
@@ -144,7 +144,7 @@ const router = new Router({
         }
       }, {
         path: 'ressources/enfants',
-        component: () => import(/* webpackChunkName: "ressources-enfants" */ './views/Foyer/Ressources/Enfants.vue'),
+        component: () => import(/* webpackChunkName: "ressources-enfants" */ './views/Simulation/Ressources/Enfants.vue'),
         meta: {
           title: 'Les ressources de vos enfants'
         }
