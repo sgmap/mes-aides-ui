@@ -8,7 +8,7 @@
     </fieldset>
     <Actions v-bind:onSubmit='onSubmit'/>
   </form>
-</template> 
+</template>
 
     <script>
 import Actions from '@/components/Actions'
@@ -19,6 +19,6 @@ export default {
   components: {
     Actions,
   },
-  mixins: [createIndividuMixin({ fieldName: 'bourse_criteres_sociaux_base_ressources', manualValidation: true})],
+  mixins: [createIndividuMixin({ fields: [{name: 'bourse_criteres_sociaux_base_ressources'}], manualValidation: true})],
 }
 </script>
