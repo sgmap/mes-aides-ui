@@ -189,6 +189,24 @@ const router = new Router({
           component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Individu/Alternant.vue'),
         },
         {
+          path: 'ressources/fiscales',
+          name: 'ressources/fiscales',
+          component: () => import(/* webpackChunkName: "ressources-fiscales" */ './views/Foyer/Ressources/Fiscales.vue'),
+          meta: {
+            title: function() {
+              return `Les revenus imposables de votre foyer en ${ store.state.dates.fiscalYear.label }`
+            }
+          }
+        },
+        {
+          path: 'ressources/patrimoine',
+          name: 'ressources/patrimoine',
+          component: () => import(/* webpackChunkName: "ressources-patrimoine" */ './views/Foyer/Ressources/Patrimoine.vue'),
+          meta: {
+            title: 'Votre patrimoine'
+          }
+        }, 
+        {
           name: 'property',
           path: ':property/:subproperty?',
           component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Property.vue'),
@@ -277,7 +295,7 @@ const router = new Router({
         component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Property.vue'),
       }]
     },
-    {
+    { 
       path: '/foyer',
       name: 'foyer',
       component: () => import(/* webpackChunkName: "demandeur" */ './views/Foyer.vue'),
@@ -311,21 +329,8 @@ const router = new Router({
         meta: {
           title: "Des lieux près de chez vous"
         }
-      }, {
-        path: 'ressources/fiscales',
-        component: () => import(/* webpackChunkName: "ressources-fiscales" */ './views/Foyer/Ressources/Fiscales.vue'),
-        meta: {
-          title: function() {
-            return `Les revenus imposables de votre foyer en ${ store.state.dates.fiscalYear.label }`
-          }
-        }
-      }, {
-        path: 'ressources/patrimoine',
-        component: () => import(/* webpackChunkName: "ressources-patrimoine" */ './views/Foyer/Ressources/Patrimoine.vue'),
-        meta: {
-          title: 'Votre patrimoine'
-        }
-      }, {
+      }, 
+      {
         path: 'recapitulatif',
         component: () => import(/* webpackChunkName: "recapitulatif" */ './views/Foyer/Recapitulatif.vue'),
         meta: {
