@@ -19,25 +19,38 @@ function allocateIndividualsToEntities(situation) {
 
     var demandeur = common.getDemandeur(situation);
     var demandeurId = demandeur && demandeur.id;
-    if (demandeurId) {
-        famille.parents = [ demandeurId ];
-        foyer.declarants = [ demandeurId ];
-        menage.personne_de_reference = [ demandeurId ];
+
+    famille.parents = [ demandeurId ];
+    menage.personne_de_reference = [ demandeurId ];
+
+    const aCharge = demandeur.enfant_a_charge && Object.keys(demandeur.enfant_a_charge).length && demandeur.enfant_a_charge[Object.keys(demandeur.enfant_a_charge)]
+    foyer.declarants = [];
+    foyer.personnes_a_charge = [];
+
+    if (aCharge) {
+        foyer.personnes_a_charge.push(demandeurId);
+    } else {
+        foyer.declarants.push(demandeurId);
     }
 
     var conjoint = common.getConjoint(situation);
     var conjointId = conjoint && conjoint.id;
     if (conjointId) {
         famille.parents.push(conjointId);
-        foyer.declarants.push(conjointId);
         menage.conjoint = [ conjointId ];
+
+        if (aCharge) {
+            foyer.personnes_a_charge.push(conjointId);
+        } else {
+            foyer.declarants.push(conjointId);
+        }
     }
 
     var enfants = common.getEnfants(situation);
     var validEnfants = filter(enfants, function(enfant) { return common.isIndividuValid(enfant, situation); });
     var enfantIds = validEnfants.map(function(enfant) { return enfant.id; });
     famille.enfants = enfantIds;
-    foyer.personnes_a_charge = enfantIds;
+    foyer.personnes_a_charge = [].concat(...foyer.personnes_a_charge).concat(...enfantIds);
     menage.enfants = enfantIds;
 }
 
@@ -77,8 +90,8 @@ function mapIndividus(situation) {
 
 function giveValueToRequestedVariables(testCase, periods, value, demandeur) {
 
-    var prestationsWithInterest = pickBy(common.requestedVariables, function(definition) {
-        return ((!definition.interestFlag) || demandeur[definition.interestFlag]);
+    var prestationsWithInterest = pickBy(common.requestedVariables, function(definition, prestationName) {
+        return ((!definition.interestFlag) || demandeur[definition.interestFlag]) && !prestationName.match(/fonds_solidarite_logement_aide_maintien_eligibilite/) && !prestationName.match(/eure_et_loir/);
     });
 
     if (! (periods instanceof Array)) {
@@ -102,6 +115,7 @@ function giveValueToRequestedVariables(testCase, periods, value, demandeur) {
     });
 }
 exports.giveValueToRequestedVariables = giveValueToRequestedVariables;
+exports.allocateIndividualsToEntities = allocateIndividualsToEntities;
 
 // Use heuristics to pass functional tests
 // Complexity may be added in the future in the application (new questions to ask)
