@@ -190,7 +190,7 @@ const router = new Router({
         },
         {
             path: ':element/en_savoir_plus',
-            name: 'en_savoir_plus',
+            name: 'individu_en_savoir_plus',
             component: () => import(/* webpackChunkName: "en_savoir_plus" */ './components/EnSavoirPlusContent.vue')
         },
         {
@@ -238,10 +238,12 @@ const router = new Router({
           component: () => import(/* webpackChunkName: "famille" */ './views/Simulation/Famille/Parisien.vue'),
         },
       ]
-      }, {
+      },
+      {
         path: 'logement',
         component: () => import(/* webpackChunkName: "logement" */ './views/Simulation/Logement.vue'),
-      }, {
+      },
+      {
         path: 'menage',
         component: () => import(/* webpackChunkName: "logement" */ './views/Simulation/Menage.vue'),
         children: [{
@@ -278,6 +280,11 @@ const router = new Router({
       {
         path: 'resultats/:droitId',
         component: () => import(/* webpackChunkName: "resultats" */ './views/Simulation/ResultatsDetail.vue'),
+      },
+      {
+          path: ':element/en_savoir_plus',
+          name: 'simulation_en_savoir_plus',
+          component: () => import(/* webpackChunkName: "en_savoir_plus" */ './components/EnSavoirPlusContent.vue')
       },
       {
         path: ':id/:property',
