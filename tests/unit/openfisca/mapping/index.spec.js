@@ -13,7 +13,6 @@ var subject = require('../../../../backend/lib/openfisca/mapping');
 var expect = require('expect');
 
 describe('openfisca buildOpenFiscaRequest', function() {
-
     var result = subject.buildOpenFiscaRequest(situation);
 
     it('writes null for css_participation_forfaitaire in 2017-10', function() {

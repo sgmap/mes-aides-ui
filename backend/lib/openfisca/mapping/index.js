@@ -12,46 +12,73 @@ var migrations = require('../../migrations');
 var propertyMove = require('./propertyMove');
 var last3MonthsDuplication = require('./last3MonthsDuplication');
 
-function allocateIndividualsToEntities(situation) {
-    var famille = situation.famille;
-    var foyer = situation.foyer_fiscal;
-    var menage = situation.menage;
+function dispatchIndividuals(situation) {
+    var individus = mapIndividus(situation);
+
+    var familles = { _: situation.famille}
+    var foyers_fiscaux = {
+        _: {
+            declarants: [],
+            personnes_a_charge: [],
+            ...situation.foyer_fiscal
+        }
+    }
+    var menages = { _: situation.menage }
 
     var demandeur = common.getDemandeur(situation);
     var demandeurId = demandeur && demandeur.id;
 
-    famille.parents = [ demandeurId ];
-    menage.personne_de_reference = [ demandeurId ];
+    familles._.parents = [ demandeurId ];
+    menages._.personne_de_reference = [ demandeurId ];
 
     const aCharge = demandeur.enfant_a_charge && Object.keys(demandeur.enfant_a_charge).length && demandeur.enfant_a_charge[Object.keys(demandeur.enfant_a_charge)]
-    foyer.declarants = [];
-    foyer.personnes_a_charge = [];
 
     if (aCharge) {
-        foyer.personnes_a_charge.push(demandeurId);
+        var parent1 = {
+            id: 'parent1'
+        }
+        individus[parent1.id] = {...parent1, id: undefined}
+        familles.parents = { parents: [parent1.id] }
+        foyers_fiscaux._.declarants.push(parent1.id)
+        menages.parents = {
+            personne_de_reference: [parent1.id]
+        }
+
+        foyers_fiscaux._.personnes_a_charge.push(demandeurId);
     } else {
-        foyer.declarants.push(demandeurId);
+        foyers_fiscaux._.declarants.push(demandeurId);
     }
 
     var conjoint = common.getConjoint(situation);
     var conjointId = conjoint && conjoint.id;
     if (conjointId) {
-        famille.parents.push(conjointId);
-        menage.conjoint = [ conjointId ];
+        familles._.parents.push(conjointId);
+        menages._.conjoint = [ conjointId ];
 
         if (aCharge) {
-            foyer.personnes_a_charge.push(conjointId);
+            foyers_fiscaux[conjointId] = {
+                declarants: [conjointId]
+            }
         } else {
-            foyer.declarants.push(conjointId);
+            foyers_fiscaux._.declarants.push(conjointId);
         }
     }
 
     var enfants = common.getEnfants(situation);
     var validEnfants = filter(enfants, function(enfant) { return common.isIndividuValid(enfant, situation); });
     var enfantIds = validEnfants.map(function(enfant) { return enfant.id; });
-    famille.enfants = enfantIds;
-    foyer.personnes_a_charge = [].concat(...foyer.personnes_a_charge).concat(...enfantIds);
-    menage.enfants = enfantIds;
+    familles._.enfants = enfantIds;
+    foyers_fiscaux._.personnes_a_charge = [].concat(...foyers_fiscaux._.personnes_a_charge).concat(...enfantIds);
+    menages._.enfants = enfantIds;
+
+    return {
+        individus: individus,
+        familles,
+        foyers_fiscaux,
+        menages,
+    };
+
+
 }
 
 function setNonInjectedPrestations(testCase, periods, value) {
@@ -115,7 +142,7 @@ function giveValueToRequestedVariables(testCase, periods, value, demandeur) {
     });
 }
 exports.giveValueToRequestedVariables = giveValueToRequestedVariables;
-exports.allocateIndividualsToEntities = allocateIndividualsToEntities;
+exports.dispatchIndividuals = dispatchIndividuals;
 
 // Use heuristics to pass functional tests
 // Complexity may be added in the future in the application (new questions to ask)
@@ -138,21 +165,9 @@ function applyHeuristicsAndFix(testCase, dateDeValeur) {
 exports.buildOpenFiscaRequest = function(sourceSituation) {
     var situation = sourceSituation.toObject ? migrations.apply(sourceSituation).toObject() : cloneDeep(sourceSituation);
 
-    var individus = mapIndividus(situation);
-    allocateIndividualsToEntities(situation);
+    var testCase = dispatchIndividuals(situation);
 
-    var testCase = {
-        individus: individus,
-        familles: {
-            _: situation.famille
-        },
-        foyers_fiscaux: {
-            _: situation.foyer_fiscal
-        },
-        menages: {
-            _: situation.menage
-        },
-    };
+    console.log(JSON.stringify(testCase, null, 2))
 
     // Variables stored to properly restore UI should not be sent to OpenFisca
     forEach(testCase, (items) => {
@@ -170,6 +185,8 @@ exports.buildOpenFiscaRequest = function(sourceSituation) {
     setNonInjectedPrestations(testCase, difference(periods.last12Months, periods.last3Months), 0);
     last3MonthsDuplication(testCase, situation.dateDeValeur);
     giveValueToRequestedVariables(testCase, periods.thisMonth, null, situation.demandeur);
+
+    testCase.foyers_fiscaux._.nantes_metropole_tarification_solidaire_transport_quotient_familial = { "2019": null }
 
     return applyHeuristicsAndFix(testCase, sourceSituation.dateDeValeur);
 };
