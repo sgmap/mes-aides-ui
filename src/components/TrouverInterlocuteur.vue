@@ -7,7 +7,7 @@
             </span>
         </div>
         <div class="aj-find-contact-box-action">
-            <router-link to="/simulation/resultats/lieux" class="button primary">
+            <router-link to="/simulation/resultats/generic/lieux" class="button primary">
                 Trouver de l'aide
             </router-link>
         </div>
