@@ -263,14 +263,22 @@ const router = new Router({
             path: 'depcom',
             component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Menage/Depcom.vue'),
         }]
-      }, 
+      },
       {
         name: 'resultats',
         path: 'resultats',
         component: () => import(/* webpackChunkName: "resultats" */ './views/Simulation/Resultats.vue'),
       },
       {
-        name: 'resultats/lieux',
+          name: 'resultats_lieux_generiques',
+          path: 'resultats/lieux',
+          component: () => import(/* webpackChunkName: "lieux" */ './views/Simulation/Resultats/LieuxGeneriques.vue'),
+          meta: {
+              title: "De l'aide près de chez vous"
+          }
+      },
+      {
+        name: 'resultats_lieux',
         path: 'resultats/:id/lieux',
         component: () => import(/* webpackChunkName: "lieux" */ './views/Simulation/Resultats/Lieux.vue'),
         meta: {
@@ -328,7 +336,7 @@ const router = new Router({
         meta: {
           title: 'Votre patrimoine'
         }
-      }, 
+      },
       {
         path: 'recapitulatif',
         component: () => import(/* webpackChunkName: "recapitulatif" */ './views/Foyer/Recapitulatif.vue'),
