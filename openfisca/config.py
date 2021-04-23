@@ -4,7 +4,7 @@ bind = os.getenv('OPENFISCA_BIND_HOST', '127.0.0.1:2000')
 timeout = 120
 workers = os.getenv('OPENFISCA_WORKERS', 8)
 
-profiler = False
+profiler = os.getenv('OPENFISCA_PROFILER_ON', False)
 if profiler:
     import cProfile
     import pstats
@@ -21,6 +21,6 @@ if profiler:
         worker.log.info("PROFILING %d: %s" % (worker.pid, req.uri))
 
     def post_request(worker, req, *args):
-        tf = tempfile.NamedTemporaryFile(delete = False)
+        tf = tempfile.NamedTemporaryFile(prefix="of_", delete = False)
         worker.log.info("PROFILING RESULT %d: %s http://127.0.0.1:8081/snakeviz/%s" % (worker.pid, req.uri, tf.name))
         worker.profile.dump_stats(tf.name)
