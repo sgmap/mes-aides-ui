@@ -1,7 +1,7 @@
 <template>
   <form>
     <p>
-        Indiquez toutes les ressources <strong>nettes versées</strong> perçues <span v-if="individu._role !== 'demandeur'"><strong>par {{ getIndividuNom() }}</strong></span> en France comme à l'étranger.
+        Indiquez toutes les ressources <abbr title="avant prélèvement à la source"><strong>nettes</strong> perçues</abbr> <span v-if="individu._role !== 'demandeur'"><strong>par {{ getIndividuNom() }}</strong></span> en France comme à l'étranger.
     </p>
     <div class="form__group" s v-for="(type, index) in types" v-bind:key="type.meta.id">
       <RessourceMontants v-if="isSimple(type.meta.id)" v-bind:individu="type.individu" v-bind:index="index" v-bind:type="type" v-on:update="process"/>
