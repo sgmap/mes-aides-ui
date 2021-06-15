@@ -1,0 +1,12 @@
+label: aide au mérite
+institution: etat
+description: L'aide au mérite est une aide supplémentaire pour les étudiants les plus méritants. Cette aide est versée en complément de la bourse sur critères sociaux
+link: https://www.etudiant.gouv.fr/fr/aide-au-merite-1291
+teleservice: https://www.etudiant.gouv.fr/fr/aide-au-merite-1291
+prefix: l’
+type: float
+floorAt: 0.1
+entity: individus
+conditions:
+  - Avoir obtenu la mention « très bien » à la dernière session du baccalauréat.
+  - Ou l'avoir déjà reçue l'année précédente.
