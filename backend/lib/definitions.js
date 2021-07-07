@@ -36,9 +36,9 @@ var individu = Object.assign(
     },
 
     agepi_temps_travail_semaine: Number,
-    aide_mobilite_master_sortie_region_academique: Boolean,
-    aide_mobilite_parcoursup_boursier_lycee: Boolean,
-    aide_mobilite_parcoursup_sortie_academie: Boolean,
+    sortie_region_academique: Boolean,
+    bourse_lycee: Boolean,
+    sortie_academie: Boolean,
     alternant: Boolean,
     annee_etude: {
       type: String,

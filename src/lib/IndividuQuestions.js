@@ -51,7 +51,7 @@ export default {
     },
   },
 
-  aide_mobilite_master_sortie_region_academique: {
+  sortie_region_academique: {
     question: (component) => {
       return `${component.getLabel("avoir")} prévu d'étudier
       <a
@@ -64,21 +64,8 @@ export default {
     },
   },
 
-  aide_mobilite_parcoursup_boursier_lycee: {
+  bourse_lycee: {
     question: "Actuellement bénéficiez-vous d'une bourse du lycée ?",
-  },
-
-  aide_mobilite_parcoursup_sortie_academie: {
-    question: (component) => {
-      return `${component.getLabel("avoir")} prévu d'étudier
-      <a
-        target="_blank"
-        rel="noopener"
-        href="https://www.education.gouv.fr/les-regions-academiques-academies-et-services-departementaux-de-l-education-nationale-6557"
-        >hors de votre académie</a
-      >
-      l'an prochain ?`
-    },
   },
 
   alternant: {
@@ -271,6 +258,19 @@ export default {
     questionType: "enum",
     items: Individu.scolariteOptions,
     enSavoirPlus: true,
+  },
+
+  sortie_academie: {
+    question: (component) => {
+      return `${component.getLabel("avoir")} prévu d'étudier
+      <a
+        target="_blank"
+        rel="noopener"
+        href="https://www.education.gouv.fr/les-regions-academiques-academies-et-services-departementaux-de-l-education-nationale-6557"
+        >hors de votre académie</a
+      >
+      l'an prochain ?`
+    },
   },
 
   statuts_etablissement_scolaire: {
