@@ -247,15 +247,45 @@ exports.buildOpenFiscaRequest = function (sourceSituation) {
   propertyMove.movePropertyValuesToGroupEntity(testCase)
 
   var periods = common.getPeriods(situation.dateDeValeur)
+
+  var prestationsFinancieresWithoutPeriods = pickBy(
+    common.requestedVariables,
+    function (definition) {
+      return (
+        (!definition.type || definition.type === "float") &&
+        !definition.openfisca_definition_period
+      )
+    }
+  )
+
+  var prestationsFinancieresWithPeriods = pickBy(
+    common.requestedVariables,
+    function (definition) {
+      return (
+        (!definition.type || definition.type === "float") &&
+        definition.openfisca_definition_period
+      )
+    }
+  )
+
   setNonInjectedPrestations(
-    testCase,
+    prestationsFinancieresWithoutPeriods,
     difference(periods.last12Months, periods.last3Months),
     0
   )
-  last3MonthsDuplication(testCase, situation.dateDeValeur)
+  last3MonthsDuplication(
+    prestationsFinancieresWithoutPeriods,
+    situation.dateDeValeur
+  )
   giveValueToRequestedVariables(
-    testCase,
+    prestationsFinancieresWithoutPeriods,
     periods.thisMonth,
+    null,
+    situation.demandeur
+  )
+  giveValueToRequestedVariables(
+    prestationsFinancieresWithPeriods,
+    periods.thisYear,
     null,
     situation.demandeur
   )
