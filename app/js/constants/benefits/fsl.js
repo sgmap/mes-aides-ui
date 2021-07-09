@@ -42,9 +42,9 @@ module.exports = {
       codeImg: "cd03",
       label: "du département de l’Allier",
       resources: {
-        link: "http://www.caf.fr/allocataires/caf-de-l-allier/offre-de-service/logement-et-cadre-de-vie/le-fonds-de-solidarite-pour-le-logement-fsl",
+        link: "https://www.allier.fr/aide/11612/717-les-aides-et-services.htm",
         instructions:
-          "http://modules.allier.fr/guide3/contenu.asp?iddossier=11612",
+          "https://www.allier.fr/aide/11612/717-les-aides-et-services.htm",
       },
     },
     D04: {
@@ -273,16 +273,16 @@ module.exports = {
       codeImg: "cd37",
       label: "du département de l’Indre-et-Loire",
       resources: {
-        link: "https://www.touraine.fr/mes-services-au-quotidien/enfance-famille/lacces-au-logement.html",
-        form: "https://www.touraine.fr/files/touraine/documents/etre-accompagne/missions/impr_FSL_interactif_departement.pdf",
+        link: "https://www.touraine.fr/files/touraine/documents/etre-accompagne/missions/Depliant_FSL_new.pdf",
+        form: "https://www.touraine.fr/files/touraine/documents/etre-accompagne/missions/617_impr_FSL_CD37_interactif_jan_2021.pdf",
       },
     },
     M243700754: {
       codeImg: "tours_metropole",
       label: "de Tours Métropole Val de Loire",
       resources: {
-        link: "https://www.touraine.fr/mes-services-au-quotidien/enfance-famille/lacces-au-logement.html",
-        form: "https://www.touraine.fr/files/touraine/documents/etre-accompagne/missions/impr_FSL_interactif_departement.pdf",
+        link: "https://www.touraine.fr/files/touraine/documents/etre-accompagne/missions/Depliant_FSL_new.pdf",
+        form: "https://www.touraine.fr/files/touraine/documents/etre-accompagne/missions/617_impr_FSL_CD37_interactif_jan_2021.pdf",
       },
     },
     D38: {
@@ -363,10 +363,9 @@ module.exports = {
       codeImg: "cd56",
       label: "du département du Morbihan",
       resources: {
-        link: "https://www.morbihan.fr/les-services/logement-habitat/fonds-de-solidarite-logement-fsl/",
-        form: "https://www.morbihan.fr/fileadmin/Les_services/Aides_departementales/20_morbihan_5_H08_FSL_maintien_logement.pdf",
+        link: "https://www.morbihan.fr/les-services/logement-habitat/fonds-de-solidarite-logement-fsl",
         instructions:
-          "https://www.morbihan.fr/les-services/aides-departementales/toutes-nos-aides/toutes-nos-aides/?tx_cg56aidesdep_guidedesaides[selectMotsCles]=fsl&tx_cg56aidesdep_guidedesaides[action]=resultsNoCache&tx_cg56aidesdep_guidedesaides[controller]=Aide#hautDePage",
+          "https://www.morbihan.fr/fileadmin/Les_services/Logement_Habitat/Logement/MORBIHAN_FSL_maintien_doc_2020.pdf",
       },
     },
     D57: {
@@ -398,7 +397,7 @@ module.exports = {
       codeImg: "cd60",
       label: "du département de l’Oise",
       resources: {
-        link: "http://www.oise.fr/guide-des-aides/aide/fonds-departemental-de-solidarite/",
+        link: "https://www.oise.fr/information/guide-des-aides-departementales/fonds-departemental-de-solidarite-3145",
       },
     },
     D62: {
@@ -458,7 +457,7 @@ module.exports = {
       codeImg: "cd71",
       label: "du département de la Saône-et-Loire",
       resources: {
-        link: "https://www.saoneetloire71.fr/accueil/vous-etes-proprietaire/locataire/rester-dans-mon-logement",
+        link: "https://www.saoneetloire71.fr/que-peut-on-faire-pour-vous/vous-etes-proprietaire-locataire/rester-dans-mon-logement",
         form: "https://www.saoneetloire71.fr/fileadmin/Que_peut-on_faire_pour_vous__/Vous_etes_proprietaire_locataire/Aides_logement/7733_DOSSIER_UNIQUE.pdf",
       },
     },
@@ -545,23 +544,23 @@ module.exports = {
       codeImg: "cd91",
       label: "du département de l’Essonne",
       resources: {
-        link: "http://www.essonne.fr/le-departement/les-organismes-associes/le-fonds-de-solidarite-pour-le-logement-fsl/",
+        link: "https://www.essonne.fr/le-departement/les-organismes-associes/le-fonds-de-solidarite-pour-le-logement-fsl",
       },
     },
     D92: {
       codeImg: "cd92",
       label: "du département des Hauts-de-Seine",
       resources: {
-        link: "https://www.78-92.fr/annuaire/aides-et-services/detail/fonds-de-solidarite-logement-fsl",
+        link: "https://www.78-92.fr/annuaire/aides-et-services/detail/le-fonds-de-solidarite-logement-fsl-92",
       },
     },
     D93: {
       codeImg: "cd93",
       label: "du département de Seine-Saint-Denis",
       resources: {
-        link: "https://seinesaintdenis.fr/Fonds-de-solidarite-logement.html",
+        link: "https://seinesaintdenis.fr/solidarite/action-sociale/article/fonds-de-solidarite-logement",
         instructions:
-          "https://seinesaintdenis.fr/Fonds-de-solidarite-logement.html#comment_en_formuler_la_demande",
+          "https://seinesaintdenis.fr/solidarite/action-sociale/article/fonds-de-solidarite-logement#Comment-en-formuler-la-demande",
       },
     },
     D94: {

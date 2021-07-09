@@ -21,6 +21,7 @@ let DATE_FIELDS = [
   "date_naissance",
   "date_arret_de_travail",
   "date_debut_chomage",
+  "plus_haut_diplome_date_obtention",
 ]
 
 function adaptPersistedIndividu(individu) {
@@ -501,7 +502,8 @@ const store = new Vuex.Store({
         .then((variableNames) => {
           let missingBenefits = []
           Institution.forEachBenefit((benefit, benefitId) => {
-            if (!benefit.test && variableNames.indexOf(benefitId) < 0) {
+            const source = benefit.openfisca_eligibility_source || benefitId
+            if (!benefit.test && variableNames.indexOf(source) < 0) {
               missingBenefits.push(benefitId)
             }
           })
