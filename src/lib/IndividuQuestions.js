@@ -110,10 +110,12 @@ export default {
     question: (component) => {
       return `Quel est le revenu brut global ${yearsAgo(
         2,
-        component.$store.state.dates.today.id
+        component.$store.state.dates.today.id,
+        "YYYY"
       )} figurant sur l’avis fiscal ${yearsAgo(
         1,
-        component.$store.state.dates.today.id
+        component.$store.state.dates.today.id,
+        "YYYY"
       )} de vos parents ?`
     },
     questionType: "number",
