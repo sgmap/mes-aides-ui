@@ -51,6 +51,12 @@ export default {
     },
   },
 
+  aide_jeunes_diplomes_anciens_boursiers_base_ressources: {
+    question:
+      "Quel montant mensuel de bourse receviez-vous lors de votre dernière année d'études ?",
+    questionType: "number",
+  },
+
   aide_mobilite_master_sortie_region_academique: {
     question: (component) => {
       return `${component.getLabel("avoir")} prévu d'étudier
@@ -100,6 +106,22 @@ export default {
     },
   },
 
+  bourse_criteres_sociaux_base_ressources_parentale: {
+    question: (component) => {
+      return `Quel est le revenu brut global ${yearsAgo(
+        2,
+        component.$store.state.dates.today.id
+      )} figurant sur l’avis fiscal ${yearsAgo(
+        1,
+        component.$store.state.dates.today.id
+      )} de vos parents&nbsp;?`
+    },
+    questionType: "number",
+    showMoreInfo: (component) => {
+      return component.$store.state.situation.parents._situation === "separes"
+    },
+  },
+
   boursier: {
     question: "Bénéficiez-vous d'une bourse de l'enseignement supérieur ?",
   },
@@ -132,6 +154,26 @@ export default {
         (item) => !item.only || item.only == component.individu.scolarite
       )
     },
+  },
+
+  date_naissance: {
+    question: (component) => {
+      return component.role === "demandeur"
+        ? `Quelle est votre date de naissance&nbsp;?`
+        : `Quelle est la date de naissance ${component.getLabel(
+            "préposition"
+          )}${component.getLabel("nom")}&nbsp;?`
+    },
+    questionType: "date",
+  },
+
+  date_debut_chomage: {
+    question: (component) => {
+      return `Quand ${component.getLabel(
+        "avoir"
+      )} commencé à être au chômage&nbsp;?`
+    },
+    questionType: "date",
   },
 
   enfant_place: {
@@ -209,6 +251,16 @@ export default {
         value: "AF",
       },
     ],
+  },
+
+  plus_haut_diplome_date_obtention: {
+    question: (component) => {
+      return `Quand ${component.getLabel(
+        "avoir"
+      )} obtenu votre plus haut diplôme ?
+      (approximativement)`
+    },
+    questionType: "date",
   },
 
   plus_haut_diplome_niveau: {
@@ -331,6 +383,12 @@ export default {
     question: "Avez-vous prévu de continuer vos études l'an prochain ?",
   },
 
+  _dureeMoisEtudesEtranger: {
+    question:
+      "Combien de mois envisagez-vous de partir à l'étranger dans le cadre de vos études ?",
+    questionType: "number",
+  },
+
   _interetEtudesEtranger: {
     question:
       "Prévoyez-vous de partir à l'étranger dans le cadre de vos études ?",
@@ -338,11 +396,5 @@ export default {
 
   _interetPermisDeConduire: {
     question: "Prévoyez-vous de passer le permis de conduire ?",
-  },
-
-  aide_jeunes_diplomes_anciens_boursiers_base_ressources: {
-    questionType: "number",
-    question:
-      "Quel montant mensuel de bourse receviez-vous lors de votre dernière année d'études ?",
   },
 }
