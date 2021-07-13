@@ -114,7 +114,7 @@ export default {
       )} figurant sur l’avis fiscal ${yearsAgo(
         1,
         component.$store.state.dates.today.id
-      )} de vos parents&nbsp;?`
+      )} de vos parents ?`
     },
     questionType: "number",
     showMoreInfo: (component) => {
@@ -159,19 +159,17 @@ export default {
   date_naissance: {
     question: (component) => {
       return component.role === "demandeur"
-        ? `Quelle est votre date de naissance&nbsp;?`
+        ? `Quelle est votre date de naissance ?`
         : `Quelle est la date de naissance ${component.getLabel(
             "préposition"
-          )}${component.getLabel("nom")}&nbsp;?`
+          )}${component.getLabel("nom")} ?`
     },
     questionType: "date",
   },
 
   date_debut_chomage: {
     question: (component) => {
-      return `Quand ${component.getLabel(
-        "avoir"
-      )} commencé à être au chômage&nbsp;?`
+      return `Quand ${component.getLabel("avoir")} commencé à être au chômage ?`
     },
     questionType: "date",
   },
