@@ -251,7 +251,7 @@ module.exports = {
       codeImg: "cd34",
       label: "du département de l’Hérault",
       resources: {
-        link: "http://www.herault.fr/aides-financieres-fsl",
+        link: "https://herault.fr/402-aide-financiere.htm",
       },
     },
     D35: {
