@@ -233,7 +233,7 @@ export default {
     enSavoirPlus: true,
   },
   mention_baccalaureat: {
-    question: "Avez-vous obtenu une mention au baccalauréat  ?",
+    question: "Avez-vous obtenu une mention au baccalauréat ?",
     questionType: "enum",
     items: Individu.mentionsBaccalaureat,
   },
