@@ -1,13 +1,17 @@
 <template>
   <form @submit.prevent="onSubmit">
     <div>
-      <h2 class="aj-question">
+      <label class="aj-question" for="_dureeMoisEtudesEtranger">
         Combien de mois envisagez-vous de partir à l'étranger dans le cadre de
         vos études ?
-      </h2>
-      <label>
-        <InputNumber min="0" v-model="value"></InputNumber>
       </label>
+      <div>
+        <InputNumber
+          id="_dureeMoisEtudesEtranger"
+          min="0"
+          v-model="value"
+        ></InputNumber>
+      </div>
     </div>
     <Actions v-bind:onSubmit="onSubmit" />
   </form>

@@ -1,17 +1,23 @@
 <template>
   <div class="form__group" v-bind:key="type.meta.id">
-    <h2 v-if="!withoutHeader">{{ type.meta.label }}</h2>
-    <YesNoQuestion class="form__group" v-model="singleValue" html-heading="h3">
-      <span
-        v-html="
-          getQuestionLabel(
-            individu,
-            type.meta,
-            $store.state.dates.twelveMonthsAgo.label
-          )
-        "
-      />
-    </YesNoQuestion>
+    <fieldset v-if="questionType === 'enum'">
+      <legend>
+        <div v-if="!withoutHeader" class="aj-question">{{
+          type.meta.label
+        }}</div>
+      </legend>
+      <YesNoQuestion class="form__group" v-model="singleValue">
+        <span
+          v-html="
+            getQuestionLabel(
+              individu,
+              type.meta,
+              $store.state.dates.twelveMonthsAgo.label
+            )
+          "
+        />
+      </YesNoQuestion>
+    </fieldset>
 
     <label class="form__group" v-if="type.displayMonthly === true">
       Indiquez le montant <b>mensuel net</b> :

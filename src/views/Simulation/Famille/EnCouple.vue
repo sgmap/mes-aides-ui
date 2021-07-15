@@ -2,7 +2,7 @@
   <form @submit.prevent="onSubmit">
     <fieldset>
       <legend
-        ><h2 class="aj-question">Vivez-vous seul·e ou en couple ?</h2></legend
+        ><div class="aj-question">Vivez-vous seul·e ou en couple ?</div></legend
       >
       <div class="aj-selection-wrapper">
         <input
