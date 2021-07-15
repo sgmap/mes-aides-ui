@@ -51,10 +51,10 @@ module.exports = {
       codeImg: "cd04",
       label: "du département des Alpes-de-Haute-Provence",
       resources: {
-        link: "http://www.mondepartement04.fr/rechercher-plus-daides/habitat-logement-urbanisme/fsl-masp/fonds-social-daide-au-logement-fsl.html",
+        link: "http://www.mondepartement04.fr/fileadmin/mediatheque/cg04/guide-des-aides/Fiche-aides/Habitat_Logement_Urbanisme/FSL_MASP/fsl.pdf",
         form: "http://www.mondepartement04.fr/fileadmin/mediatheque/cg04/formulaire/Insertion/Acc%C3%A8s_au_logement/IMPRIME_FSL_12-2019.pdf",
         instructions:
-          "http://www.mondepartement04.fr/rechercher-plus-daides/habitat-logement-urbanisme/fsl-masp/mesure-daccompagnement-social-personnalise.html#c6266",
+          "http://www.mondepartement04.fr/fileadmin/mediatheque/cg04/guide-des-aides/Fiche-aides/Habitat_Logement_Urbanisme/FSL_MASP/fsl.pdf",
       },
     },
     D05: {
