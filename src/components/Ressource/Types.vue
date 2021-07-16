@@ -15,23 +15,30 @@
       v-for="category in categories"
       v-bind:key="category.id"
     >
-      <h2 class="aj-question">{{ category.label(individu) | capitalize }}</h2>
-      <div class="aj-selections">
-        <div
-          v-for="type in sort(typesByCategories[category.id])"
-          class="aj-selection-wrapper"
-          v-bind:key="type.id"
-        >
-          <input
-            :id="type.id"
-            type="checkbox"
-            v-model="selectedTypes[type.id]"
-          />
-          <label :for="type.id">
-            {{ type.label }}
-          </label>
+      <fieldset>
+        <legend>
+          <div class="aj-question">{{
+            category.label(individu) | capitalize
+          }}</div>
+        </legend>
+
+        <div class="aj-selections">
+          <div
+            v-for="type in sort(typesByCategories[category.id])"
+            class="aj-selection-wrapper"
+            v-bind:key="type.id"
+          >
+            <input
+              :id="type.id"
+              type="checkbox"
+              v-model="selectedTypes[type.id]"
+            />
+            <label :for="type.id">
+              {{ type.label }}
+            </label>
+          </div>
         </div>
-      </div>
+      </fieldset>
     </div>
     <div class="form__group">{{ countLabel }}</div>
     <Actions v-bind:onSubmit="onSubmit"> </Actions>

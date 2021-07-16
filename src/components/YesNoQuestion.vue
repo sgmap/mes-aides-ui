@@ -1,9 +1,9 @@
 <template>
   <fieldset>
     <legend>
-      <component :is="htmlHeading" class="aj-question">
+      <div class="aj-question">
         <slot></slot>
-      </component>
+      </div>
       <slot name="help"></slot>
     </legend>
     <div class="aj-selections">
@@ -36,10 +36,6 @@ export default {
   name: "YesNoQuestion",
   props: {
     value: [Boolean, Number],
-    htmlHeading: {
-      type: String,
-      default: "h2",
-    },
   },
   data: function () {
     const uniqueFieldName = "field." + Math.random().toString(36).slice(2)

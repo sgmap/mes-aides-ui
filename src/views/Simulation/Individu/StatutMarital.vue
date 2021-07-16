@@ -2,9 +2,9 @@
   <form @submit.prevent="onSubmit">
     <fieldset>
       <legend
-        ><h2 class="aj-question"
+        ><div class="aj-question"
           >Quelle est votre relation avec votre conjoint&nbsp;?
-        </h2></legend
+        </div></legend
       >
       <div
         class="aj-selection-wrapper"

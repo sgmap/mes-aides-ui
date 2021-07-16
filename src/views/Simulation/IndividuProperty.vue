@@ -2,10 +2,10 @@
   <form @submit.prevent="onSubmit">
     <fieldset v-if="questionType === 'enum'">
       <legend>
-        <h2 class="aj-question">
+        <div class="aj-question">
           <span v-html="question"></span>
           <EnSavoirPlus v-if="showMoreInfo" />
-        </h2>
+        </div>
         <p v-if="meta.help" v-html="meta.help"></p>
       </legend>
       <div class="aj-selections">
@@ -29,14 +29,18 @@
       </div>
     </fieldset>
     <div v-else-if="questionType === 'number'">
-      <h2 class="aj-question">
+      <label class="aj-question" :for="fieldName">
         <span v-html="question" />
         <EnSavoirPlus v-if="showMoreInfo" />
-      </h2>
-      <p v-if="meta.help" v-html="meta.help"></p>
-      <label>
-        <InputNumber :min="meta.min" v-model="value"></InputNumber>
       </label>
+      <p v-if="meta.help" v-html="meta.help"></p>
+      <div>
+        <InputNumber
+          :id="fieldName"
+          :min="meta.min"
+          v-model="value"
+        ></InputNumber>
+      </div>
     </div>
     <YesNoQuestion v-else v-model="value">
       <span v-html="question"></span><EnSavoirPlus v-if="showMoreInfo" />
