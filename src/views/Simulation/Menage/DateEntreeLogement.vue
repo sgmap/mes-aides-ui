@@ -24,8 +24,6 @@ export default {
     InputDate,
   },
   data: function () {
-    // eslint-disable-next-line no-debugger
-    debugger
     const menage = { ...(this.$store.getters.getMenage || {}) }
     return {
       menage: menage,
