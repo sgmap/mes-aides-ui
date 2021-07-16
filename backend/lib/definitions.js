@@ -34,11 +34,7 @@ var individu = Object.assign(
       type: String,
       enum: ["actif", "chomeur", "etudiant", "inactif", "retraite"],
     },
-
     agepi_temps_travail_semaine: Number,
-    sortie_region_academique: Boolean,
-    bourse_lycee: Boolean,
-    sortie_academie: Boolean,
     aide_jeunes_diplomes_anciens_boursiers_base_ressources: Number,
     alternant: Boolean,
     annee_etude: {
@@ -59,6 +55,7 @@ var individu = Object.assign(
       ],
     },
     ass_precondition_remplie: Boolean,
+    bourse_lycee: Boolean,
     boursier: Boolean,
     _boursier_derniere_annee_etudes: Boolean,
     bourse_criteres_sociaux_base_ressources_parentale: Number,
@@ -112,6 +109,8 @@ var individu = Object.assign(
         "inconnue",
       ],
     },
+    sortie_academie: Boolean,
+    sortie_region_academique: Boolean,
     statuts_etablissement_scolaire: {
       type: String,
       enum: ["inconnu", "public", "prive_sous_contrat", "prive_hors_contrat"],
