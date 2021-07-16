@@ -8,24 +8,36 @@
         </h2>
         <p v-if="meta.help" v-html="meta.help"></p>
       </legend>
-      <div
-        class="aj-selection-wrapper"
-        v-for="(item, index) in items"
-        :key="item.value"
-      >
-        <input
-          :id="item.value"
-          type="radio"
-          :name="fieldName"
-          :value="item.value"
-          v-model="value"
-          :autofocus="index === 0"
-        />
-        <label :for="item.value">
-          {{ item.label }}
-        </label>
+      <div class="aj-selections">
+        <div
+          class="aj-selection-wrapper"
+          v-for="(item, index) in items"
+          :key="item.value"
+        >
+          <input
+            :id="item.value"
+            type="radio"
+            :name="fieldName"
+            :value="item.value"
+            v-model="value"
+            :autofocus="index === 0"
+          />
+          <label :for="item.value">
+            {{ item.label }}
+          </label>
+        </div>
       </div>
     </fieldset>
+    <div v-else-if="questionType === 'number'">
+      <h2 class="aj-question">
+        <span v-html="question" />
+        <EnSavoirPlus v-if="showMoreInfo" />
+      </h2>
+      <p v-if="meta.help" v-html="meta.help"></p>
+      <label>
+        <InputNumber :min="meta.min" v-model="value"></InputNumber>
+      </label>
+    </div>
     <YesNoQuestion v-else v-model="value">
       <span v-html="question"></span><EnSavoirPlus v-if="showMoreInfo" />
       <template v-slot:help v-if="meta.help"
@@ -44,10 +56,12 @@ import Individu from "@/lib/Individu"
 import IndividuQuestions from "@/lib/IndividuQuestions"
 import { executeFunctionOrReturnValue, capitalize } from "@/lib/Utils"
 import EnSavoirPlus from "@/components/EnSavoirPlus"
+import InputNumber from "@/components/InputNumber"
 
 export default {
   name: "IndividuProperty",
   components: {
+    InputNumber,
     Actions,
     YesNoQuestion,
     EnSavoirPlus,
