@@ -315,6 +315,15 @@ const router = new Router({
             ),
         },
         {
+          name: "resultatsAttendus",
+          path: "resultats/inattendu",
+          component: () =>
+            import(
+              /* webpackChunkName: "resultat" */ "./views/Foyer/Resultat/Attendu.vue"
+            ),
+          meta: { title: "Résultats attendus" },
+        },
+        {
           path: ":id/:property",
           component: () =>
             import(
@@ -393,14 +402,6 @@ const router = new Router({
           },
         },
       ],
-    },
-    {
-      path: "/resultats/attendu",
-      component: () =>
-        import(
-          /* webpackChunkName: "resultat" */ "./views/Foyer/Resultat/Attendu.vue"
-        ),
-      meta: { title: "Résultats attendus" },
     },
     {
       path: "/accessibilite",
