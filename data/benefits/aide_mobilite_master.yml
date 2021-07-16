@@ -10,4 +10,3 @@ type: float
 legend: ""
 floorAt: 1
 entity: individus
-openfisca_definition_period: thisYear

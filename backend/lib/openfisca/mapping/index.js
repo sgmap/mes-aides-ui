@@ -99,15 +99,8 @@ function dispatchIndividuals(situation) {
   }
 }
 
-function setNonInjectedPrestations(testCase, periods, value) {
-  var prestationsFinancieres = pickBy(
-    common.requestedVariables,
-    function (definition) {
-      return !definition.type || definition.type === "float"
-    }
-  )
-
-  forEach(prestationsFinancieres, function (definition, prestationName) {
+function setNonInjected(testCase, prestations, periods, value) {
+  forEach(prestations, function (definition, prestationName) {
     forEach(testCase[definition.entity], function (entity) {
       entity[prestationName] = entity[prestationName] || {}
       forEach(periods, function (period) {
@@ -121,7 +114,6 @@ function setNonInjectedPrestations(testCase, periods, value) {
     })
   })
 }
-exports.setNonInjectedPrestations = setNonInjectedPrestations
 
 function mapIndividus(situation) {
   var individus = filter(
@@ -248,44 +240,38 @@ exports.buildOpenFiscaRequest = function (sourceSituation) {
 
   var periods = common.getPeriods(situation.dateDeValeur)
 
-  var prestationsFinancieresWithoutPeriods = pickBy(
+  var prestationsFinancieres = pickBy(
     common.requestedVariables,
     function (definition) {
-      return (
-        (!definition.type || definition.type === "float") &&
-        !definition.openfisca_definition_period
-      )
+      return !definition.type || definition.type === "float"
     }
   )
-
-  var prestationsFinancieresWithPeriods = pickBy(
-    common.requestedVariables,
-    function (definition) {
-      return (
-        (!definition.type || definition.type === "float") &&
-        definition.openfisca_definition_period
-      )
-    }
-  )
-
-  setNonInjectedPrestations(
-    prestationsFinancieresWithoutPeriods,
+  setNonInjected(
+    testCase,
+    prestationsFinancieres,
     difference(periods.last12Months, periods.last3Months),
     0
   )
-  last3MonthsDuplication(
-    prestationsFinancieresWithoutPeriods,
-    situation.dateDeValeur
+
+  var prestationsFinancieresAtZeroRecently = pickBy(
+    common.requestedVariables,
+    function (definition) {
+      return (
+        (!definition.type || definition.type === "float") &&
+        definition.setToZeroRecently
+      )
+    }
   )
+  setNonInjected(
+    testCase,
+    prestationsFinancieresAtZeroRecently,
+    periods.last3Months,
+    0
+  )
+  last3MonthsDuplication(testCase, situation.dateDeValeur)
   giveValueToRequestedVariables(
-    prestationsFinancieresWithoutPeriods,
+    testCase,
     periods.thisMonth,
-    null,
-    situation.demandeur
-  )
-  giveValueToRequestedVariables(
-    prestationsFinancieresWithPeriods,
-    periods.thisYear,
     null,
     situation.demandeur
   )
