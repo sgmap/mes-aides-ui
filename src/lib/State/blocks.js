@@ -286,6 +286,7 @@ function housingBlock() {
           !subject.statut_occupation_logement ||
           subject.statut_occupation_logement.startsWith("locataire"),
         steps: [
+          new Step({ entity: "menage", variable: "date_entree_logement" }),
           new Step({ entity: "menage", variable: "coloc" }),
           new Step({ entity: "menage", variable: "logement_chambre" }),
           new Step({

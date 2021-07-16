@@ -276,6 +276,14 @@ const router = new Router({
                   /* webpackChunkName: "individu" */ "./views/Simulation/Menage/Depcom.vue"
                 ),
             },
+            {
+              name: "date_entree_logement",
+              path: "date_entree_logement",
+              component: () =>
+                import(
+                  /* webpackChunkName: "individu" */ "./views/Simulation/Menage/DateEntreeLogement.vue"
+                ),
+            },
           ],
         },
         {

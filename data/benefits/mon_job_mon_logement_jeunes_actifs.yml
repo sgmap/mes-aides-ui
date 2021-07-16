@@ -1,7 +1,7 @@
 label: Aide au logement « Mon job mon logement jeunes actifs »
-institution: etat
-description: L’aide au logement « Mon job mon logement jeunes actifs » s’adresse aux jeunes actifs en 1er emploi, en alternance, en reprise
-  d’emploi suite à une situation de chômage.
+institution: action_logement
+description: L’aide au logement « Mon job mon logement jeunes actifs » s’adresse aux jeunes actifs de moins de 25 ans en emploi, en alternance, en reprise
+  d’emploi suite à une situation de chômage pour les accompagner dans l’installation de leur logement.
 link: https://www.actionlogement.fr/aide-logement-jeunes-actifs
 instructions: https://www.actionlogement.fr/aide-logement-jeunes-actifs
 teleservice: https://piv.actionlogement.fr/simulateur-mobilite
